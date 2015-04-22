@@ -10,6 +10,8 @@ cd $HADOOP_PREFIX/share/hadoop/common ; for cp in ${ACP//,/ }; do  echo == $cp; 
 # altering the core-site configuration
 sed s/HOSTNAME/$HOSTNAME/ /usr/local/hadoop/etc/hadoop/core-site.xml.template > /usr/local/hadoop/etc/hadoop/core-site.xml
 
+# load hadoop config file from ftp server
+$HADOOP_PREFIX/tools/loadHadoopConfigFiles.sh
 
 service sshd start
 sudo -u hadoop $HADOOP_PREFIX/sbin/start-dfs.sh

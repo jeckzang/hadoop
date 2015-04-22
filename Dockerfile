@@ -18,6 +18,8 @@ RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
 RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
+# install wget
+RUN yum install -y wget
 
 # java
 RUN curl -LO 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.rpm' -H 'Cookie: oraclelicense=accept-securebackup-cookie'
@@ -104,6 +106,9 @@ RUN cat /home/$HADOOP_USER/.ssh/id_dsa.pub >> /home/$HADOOP_USER/.ssh/authorized
 RUN $HADOOP_PREFIX/bin/hdfs namenode -format
 
 USER root
+
+# add load config sh
+ADD loadHadoopConfigFiles.sh /usr/local/hadoop/tools/loadHadoopConfigFiles.sh
 
 CMD ["/etc/bootstrap.sh", "-d"]
 
