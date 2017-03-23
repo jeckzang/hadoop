@@ -110,6 +110,6 @@ USER root
 # add load config sh
 ADD loadHadoopConfigFiles.sh /usr/local/hadoop/tools/loadHadoopConfigFiles.sh
 
-CMD ["/etc/bootstrap.sh", "-d"]
+CMD ["/etc/bootstrap.sh", "-b"]
 
 EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030
